@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Promotions() {
   return (
-    <section className="bg-white px-10 py-24">
+    <section className="bg-white px-10 py-24 hidden sm:block">
       <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* LEFT – Large Promo */}
         <div className="relative col-span-1 lg:col-span-2 h-[320px] rounded-3xl overflow-hidden">

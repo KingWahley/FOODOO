@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Parallax from "./parallax";
+import Parallax from "./Parallax2";
 export default function Hero() {
   return (
     <section className="bg-cream px-10 pt-10 pb-24">
