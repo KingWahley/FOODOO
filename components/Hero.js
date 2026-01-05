@@ -5,7 +5,7 @@ export default function Hero() {
     <section className="bg-cream px-10 pt-10 pb-24">
       <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-2 items-center  gap-20">
         <div>
-          <h1 className="sm:text-[60px] text-[50px] leading-tight font-bold text-primary">
+          <h1 className="sm:text-[60px] text-[40px] leading-tight font-bold text-primary">
             All Fast Food is <br /> Available at Foodle
           </h1>
 

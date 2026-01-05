@@ -8,7 +8,7 @@ export default function ProductCard({
   price,
 }) {
   return (
-    <div className="relative mt-10 w-[300px] h-[220px] bg-[#FFF1E6] rounded-2xl px-6 pt-20 pb-6 mx-auto">
+<div className="relative mt-20 bg-[#FFF1E6] rounded-2xl px-6 pt-20 pb-6 h-[340px]">
       
       <div className="absolute top-[-48px] left-1/2 -translate-x-1/2">
         <div className="w-[120px] h-[120px] rounded-full border-[6px] border-primary bg-white overflow-hidden">
