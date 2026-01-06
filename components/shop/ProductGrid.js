@@ -1,6 +1,6 @@
 import ProductCard from "./ProductCard";
 
-export default function ProductGrid({ products, onAdd }) {
+export default function ProductGrid({ products, onAdd, onRemove, cartMap }) {
   if (products.length === 0) {
     return (
       <p className="mt-10 text-gray-500 text-center">
@@ -10,20 +10,19 @@ export default function ProductGrid({ products, onAdd }) {
   }
 
   return (
-    <div
-      className="
-        grid
-        grid-cols-2
-        items-start
-        gap-4
-        sm:gap-6
-        md:grid-cols-3
-        md:gap-8
-      "
-    >
+    <div className="
+      grid grid-cols-2 items-start
+      gap-4 sm:gap-6
+      md:grid-cols-3 md:gap-8
+    ">
       {products.map((p) => (
         <div key={p.id} className="h-full">
-          <ProductCard product={p} onAdd={onAdd} />
+          <ProductCard
+            product={p}
+            inCart={cartMap?.[p.id]}
+            onAdd={onAdd}
+            onRemove={onRemove}
+          />
         </div>
       ))}
     </div>

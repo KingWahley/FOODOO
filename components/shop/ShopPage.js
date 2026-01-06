@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import Sidebar from "./Sidebar";
 import TopBar from "./TopBar";
 import ProductGrid from "./ProductGrid";
 import CartPanel from "./CartPanel";
@@ -43,7 +42,6 @@ export default function ShopPage() {
   const filteredProducts = useMemo(() => {
     return products.filter((p) => {
       const matchSearch = p.name.toLowerCase().includes(search.toLowerCase());
-
       const matchCategory =
         category === "all" ||
         category === "signature" ||
@@ -52,6 +50,15 @@ export default function ShopPage() {
       return matchSearch && matchCategory;
     });
   }, [search, category]);
+
+  // ✅ CART LOOKUP (for product cards)
+  const cartMap = useMemo(() => {
+    const map = {};
+    cart.forEach((item) => {
+      map[item.id] = item.qty;
+    });
+    return map;
+  }, [cart]);
 
   return (
     <div className="bg-gray-50">
@@ -67,7 +74,12 @@ export default function ShopPage() {
               onCategoryChange={setCategory}
             />
 
-            <ProductGrid products={filteredProducts} onAdd={addToCart} />
+            <ProductGrid
+              products={filteredProducts}
+              onAdd={addToCart}
+              onRemove={removeFromCart}
+              cartMap={cartMap}
+            />
           </main>
 
           <CartPanel
@@ -79,20 +91,20 @@ export default function ShopPage() {
           />
         </div>
       </div>
-  {/* MOBILE CART BUTTON */}
-      {cart.length > 0 && (
+
+      {cart.length > 0 && !cartOpen && (
         <button
           onClick={() => setCartOpen(true)}
           className="
-            fixed bottom-20 right-4
-            md:hidden
-            bg-orange-500 text-white
-            px-5 py-3
-            rounded-full
-            shadow-lg
-            font-medium
-            z-50
-          "
+      fixed bottom-20 right-4
+      md:hidden
+      bg-orange-500 text-white
+      px-5 py-3
+      rounded-full
+      shadow-lg
+      font-medium
+      z-50
+    "
         >
           View Cart ({cart.length})
         </button>

@@ -17,19 +17,17 @@ export default function TopBar({
       className="
         sticky top-0 z-10
         bg-white
-        px-4 md:px-0
+        px-4 md:px-6
         py-4 md:py-5
         mb-4 md:mb-5
       "
     >
-      {/* Subtitle */}
       <p className="text-gray-500 text-sm md:text-base">
         Discover whatever you need easily
       </p>
 
-      {/* Search row */}
       <div className="mt-4 md:mt-6 flex items-center gap-3 md:gap-4">
-        <div className="flex items-center gap-3 bg-white px-4 py-3 rounded-xl shadow-sm flex-1">
+        <div className="flex mt-4 items-center gap-3 bg-white px-4 py-3 rounded-xl shadow-sm flex-1">
           <span className="text-gray-400">🔍</span>
           <input
             type="text"

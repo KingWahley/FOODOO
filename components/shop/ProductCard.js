@@ -1,17 +1,28 @@
 import Image from "next/image";
 
-export default function ProductCard({ product, onAdd }) {
+export default function ProductCard({
+  product,
+  onAdd,
+  onRemove,
+  inCart,
+}) {
+  const isInCart = Boolean(inCart);
+
+  function handleClick() {
+    if (isInCart) {
+      onRemove(product.id);
+    } else {
+      onAdd(product);
+    }
+  }
+
   return (
-    <div
-      className="
-        bg-white
-        rounded-2xl
-        p-3 md:p-4
-        shadow-sm
-        hover:shadow-md
-        transition
-      "
-    >
+    <div className="
+      bg-white rounded-2xl
+      p-3 md:p-4
+      shadow-sm hover:shadow-md
+      transition relative
+    ">
       {/* Image */}
       <div className="relative h-32 md:h-40 mb-3 md:mb-4">
         <Image
@@ -21,21 +32,22 @@ export default function ProductCard({ product, onAdd }) {
           className="object-cover rounded-xl"
         />
 
-        {/* Add to cart */}
+        {/* Toggle Add / Remove */}
         <button
-          onClick={() => onAdd(product)}
-          className="
+          onClick={handleClick}
+          className={`
             absolute top-2 right-2
-            bg-white
-            p-2
-            rounded-lg
-            shadow
-            active:scale-95
-            transition
-          "
-          aria-label="Add to cart"
+            px-3 py-2
+            rounded-lg text-xs font-medium
+            shadow transition-all duration-200
+            ${
+              isInCart
+                ? "bg-red-500 text-white hover:scale-105 active:scale-95"
+                : "bg-white text-gray-800 hover:scale-105 active:scale-95"
+            }
+          `}
         >
-          🛒
+          {isInCart ? `✕ Remove (${inCart})` : "🛒 Add"}
         </button>
       </div>
 
