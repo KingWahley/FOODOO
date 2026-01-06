@@ -1,29 +1,43 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (path) => pathname === path;
 
   return (
     <nav className="sticky top-0 z-50 w-full bg-white shadow-sm">
       <div className="mx-auto max-w-7xl px-10 py-6 flex items-center justify-between">
 
-        {/* Logo */}
         <h1 className="text-xl font-semibold tracking-tight">
           Foodle
         </h1>
 
-        {/* Desktop Nav */}
-        <ul className="hidden md:flex items-center gap-10 text-sm text-gray-500">
-          <li className="relative font-medium text-gray-900">
+        <ul className="hidden md:flex items-center gap-10 text-sm">
+          <NavLink href="/" active={isActive("/")}>
             Home
-            <span className="absolute -bottom-2 left-0 w-full h-[2px] bg-primary rounded-full" />
-          </li>
-          <li className="hover:text-gray-900 transition">Offer</li>
-          <li className="hover:text-gray-900 transition">Service</li>
-          <li className="hover:text-gray-900 transition">Menu</li>
-          <li className="hover:text-gray-900 transition">About Us</li>
+          </NavLink>
+
+          <NavLink href="/shop" active={isActive("/shop")}>
+            Shop
+          </NavLink>
+
+          <NavLink href="/service" active={isActive("/service")}>
+            Service
+          </NavLink>
+
+          <NavLink href="/menu" active={isActive("/menu")}>
+            Menu
+          </NavLink>
+
+          <NavLink href="/about" active={isActive("/about")}>
+            About Us
+          </NavLink>
         </ul>
 
         {/* Desktop Auth */}
@@ -50,24 +64,45 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {open && (
         <div className="md:hidden bg-white border-t">
-          <ul className="flex flex-col px-10 py-6 gap-6 text-sm text-gray-700">
-            <li className="font-medium text-primary">Home</li>
-            <li>Offer</li>
-            <li>Service</li>
-            <li>Menu</li>
-            <li>About Us</li>
-
-            <div className="pt-4 flex flex-col gap-4">
-              <button className="text-primary font-medium text-left">
-                Login
-              </button>
-              <button className="border border-primary text-primary py-2 rounded-full font-medium">
-                Sign Up
-              </button>
-            </div>
+          <ul className="flex flex-col px-10 py-6 gap-6 text-sm">
+            <MobileLink href="/" active={isActive("/")}>Home</MobileLink>
+            <MobileLink href="/shop" active={isActive("/shop")}>Shop</MobileLink>
+            <MobileLink href="/service" active={isActive("/service")}>Service</MobileLink>
+            <MobileLink href="/menu" active={isActive("/menu")}>Menu</MobileLink>
+            <MobileLink href="/about" active={isActive("/about")}>About Us</MobileLink>
           </ul>
         </div>
       )}
     </nav>
+  );
+}
+
+
+function NavLink({ href, active, children }) {
+  return (
+    <Link
+      href={href}
+      className={`relative font-medium transition ${
+        active ? "text-gray-900" : "text-gray-500 hover:text-gray-900"
+      }`}
+    >
+      {children}
+      {active && (
+        <span className="absolute -bottom-2 left-0 w-full h-[2px] bg-primary rounded-full" />
+      )}
+    </Link>
+  );
+}
+
+function MobileLink({ href, active, children }) {
+  return (
+    <Link
+      href={href}
+      className={`font-medium ${
+        active ? "text-primary" : "text-gray-700"
+      }`}
+    >
+      {children}
+    </Link>
   );
 }

@@ -2,11 +2,10 @@ export default function Footer() {
   return (
     <footer className="bg-cream px-10 pt-20 pb-12">
       <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-4 gap-16">
-        {/* Brand */}
         <div>
           <h3 className="text-2xl font-semibold text-primary mb-4">Fooodish</h3>
           <p className="text-sm text-gray-500 max-w-xs">
-            Continue Foodish 2023 all rights reserved
+            WebDevii 2025 all rights reserved
           </p>
 
           <h4 className="mt-10 text-lg font-semibold text-primary">
@@ -21,7 +20,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Menu */}
         <div>
           <h4 className="text-xl font-semibold text-primary mb-6">Menu</h4>
           <ul className="space-y-4 text-sm text-gray-600">
@@ -32,7 +30,6 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Information */}
         <div>
           <h4 className="text-xl font-semibold text-primary mb-6">
             Information
@@ -47,7 +44,6 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Contact */}
         <div>
           <h4 className="text-xl font-semibold text-primary mb-6">Contact</h4>
           <ul className="space-y-4 text-sm text-gray-600">

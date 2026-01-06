@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Parallax from "./Parallax2";
 export default function Hero() {
   return (
@@ -17,12 +18,12 @@ export default function Hero() {
           </div>
 
           <div className="mt-10 flex items-center gap-6">
-            <button className="flex items-center gap-3 bg-primary text-white px-2 w-40 py-3 rounded-full text-sm font-medium shadow-sm hover:opacity-90 transition">
+            <Link href="/shop" className="flex items-center gap-3 bg-primary text-white px-2 w-40 py-3 rounded-full text-sm font-medium shadow-sm hover:opacity-90 transition">
               <span className="w-6 h-6 p-4 rounded-full bg-white/20 flex items-center justify-center">
                 🛍️
               </span>
               Buy Now
-            </button>
+            </Link>
 
             <button className="flex items-center gap-3 text-sm font-medium text-gray-700  hover:text-primary transition">
               <span className="w-10 h-10 rounded-full border border-primary shadow-lg flex items-center justify-center text-primary">
