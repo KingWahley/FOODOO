@@ -1,3 +1,4 @@
+import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="bg-cream px-10 pt-20 pb-12">
@@ -18,30 +19,6 @@ export default function Footer() {
             <span className="hover:text-primary cursor-pointer">𝕏</span>
             <span className="hover:text-primary cursor-pointer">ⓕ</span>
           </div>
-        </div>
-
-        <div>
-          <h4 className="text-xl font-semibold text-primary mb-6">Menu</h4>
-          <ul className="space-y-4 text-sm text-gray-600">
-            <li>Home</li>
-            <li>Offers</li>
-            <li>Service</li>
-            <li>About Us</li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="text-xl font-semibold text-primary mb-6">
-            Information
-          </h4>
-          <ul className="space-y-4 text-sm text-gray-600">
-            <li>Menu</li>
-            <li>Quality</li>
-            <li>Make a Choice</li>
-            <li>Salad With Vegetable</li>
-            <li>Fast Delivery</li>
-            <li>Subscribe</li>
-          </ul>
         </div>
 
         <div>
