@@ -104,6 +104,7 @@ export default function ShopPage() {
       shadow-lg
       font-medium
       z-50
+      
     "
         >
           View Cart ({cart.length})
