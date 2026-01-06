@@ -5,7 +5,7 @@ export default function Footer() {
         <div>
           <h3 className="text-2xl font-semibold text-primary mb-4">Fooodish</h3>
           <p className="text-sm text-gray-500 max-w-xs">
-            WebDevii 2025 all rights reserved
+            © {new Date().getFullYear()} WebDevii. All rights reserved.
           </p>
 
           <h4 className="mt-10 text-lg font-semibold text-primary">
