@@ -4,10 +4,6 @@ export const dynamic = "force-dynamic";
 import { NextResponse } from "next/server";
 import Groq from "groq-sdk";
 
-const groq = new Groq({
-  apiKey: process.env.GROQ_API_KEY,
-});
-
 const SYSTEM_PROMPT = `
 You are a friendly food ordering assistant for a restaurant app.
 
@@ -33,18 +29,23 @@ If your response violates any rule, rewrite it internally before answering.
 
 function cleanAIReply(text) {
   return text
-    .replace(/\*/g, "")          
-    .replace(/_/g, "")           
-    .replace(/`/g, "")           
-    .replace(/#{1,6}\s?/g, "")   
-    .replace(/-{2,}/g, "-")      
-    .replace(/\n{3,}/g, "\n\n")  
+    .replace(/\*/g, "")
+    .replace(/_/g, "")
+    .replace(/`/g, "")
+    .replace(/#{1,6}\s?/g, "")
+    .replace(/-{2,}/g, "-")
+    .replace(/\n{3,}/g, "\n\n")
     .trim();
 }
 
 export async function POST(req) {
   try {
     const { messages } = await req.json();
+
+    // ✅ INIT SDK AT RUNTIME ONLY
+    const groq = new Groq({
+      apiKey: process.env.GROQ_API_KEY,
+    });
 
     const completion = await groq.chat.completions.create({
       model: "llama-3.1-8b-instant",
@@ -56,9 +57,9 @@ export async function POST(req) {
       max_tokens: 300,
     });
 
-    let reply = completion.choices[0].message.content;
-
-    reply = cleanAIReply(reply);
+    let reply = cleanAIReply(
+      completion.choices[0].message.content
+    );
 
     return NextResponse.json({ reply });
   } catch (error) {
