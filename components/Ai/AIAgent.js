@@ -80,7 +80,17 @@ export default function AIAgent() {
     <>
       <button
         onClick={toggleOpen}
-        className="fixed bottom-6 left-6 z-50 bg-black text-white px-4 py-3 rounded-full shadow-lg"
+        className="
+                  fixed
+                    bottom-6 left-6
+                    md:left-auto md:right-6
+                    md:bottom-auto md:top-5
+                    z-50
+                    bg-black text-white
+                    px-4 py-3
+                    rounded-full
+                    shadow-lg
+                  "
       >
         🤖 AI Help
       </button>

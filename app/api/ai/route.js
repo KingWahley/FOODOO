@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 import Groq from "groq-sdk";
 
 const SYSTEM_PROMPT = `
-You are a friendly food ordering assistant for a restaurant app.
+Your name is Vijan and you are a friendly food ordering assistant for a restaurant app.
 
 Strict rules you must follow:
 - Do not use asterisks (*)
@@ -48,17 +48,12 @@ export async function POST(req) {
 
     const completion = await groq.chat.completions.create({
       model: "llama-3.1-8b-instant",
-      messages: [
-        { role: "system", content: SYSTEM_PROMPT },
-        ...messages,
-      ],
+      messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
       temperature: 0.35,
       max_tokens: 300,
     });
 
-    let reply = cleanAIReply(
-      completion.choices[0].message.content
-    );
+    let reply = cleanAIReply(completion.choices[0].message.content);
 
     return NextResponse.json({ reply });
   } catch (error) {
