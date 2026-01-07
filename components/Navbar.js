@@ -24,15 +24,11 @@ export default function Navbar() {
           </NavLink>
 
           <NavLink href="/shop" active={isActive("/shop")}>
-            Shop
-          </NavLink>
-
-          <NavLink href="/service" active={isActive("/service")}>
-            Service
-          </NavLink>
-
-          <NavLink href="/menu" active={isActive("/menu")}>
             Menu
+          </NavLink>
+
+          <NavLink href="/recipes" active={isActive("/recipes")}>
+            Recipe
           </NavLink>
 
           <NavLink href="/about" active={isActive("/about")}>
@@ -41,12 +37,12 @@ export default function Navbar() {
         </ul>
 
         <div className="hidden md:flex items-center gap-6 text-sm">
-          <button className="text-primary font-medium hover:opacity-80 transition">
+          {/* <button className="text-primary font-medium hover:opacity-80 transition">
             Login
-          </button>
-          <button className="px-5 py-2 border border-primary text-primary rounded-full font-medium hover:bg-primary hover:text-white transition">
+          </button> */}
+          {/* <button className="px-5 py-2 border border-primary text-primary rounded-full font-medium hover:bg-primary hover:text-white transition">
             Sign Up
-          </button>
+          </button> */}
         </div>
 
         <button
@@ -64,7 +60,7 @@ export default function Navbar() {
           <ul className="flex flex-col px-10 py-6 gap-6 text-sm">
             <MobileLink href="/" active={isActive("/")}>Home</MobileLink>
             <MobileLink href="/shop" active={isActive("/shop")}>Shop</MobileLink>
-            <MobileLink href="/service" active={isActive("/service")}>Service</MobileLink>
+            <MobileLink href="/recipes" active={isActive("/recipes")}>Recipe</MobileLink>
             <MobileLink href="/menu" active={isActive("/menu")}>Menu</MobileLink>
             <MobileLink href="/about" active={isActive("/about")}>About Us</MobileLink>
           </ul>
