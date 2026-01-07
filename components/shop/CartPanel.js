@@ -98,7 +98,7 @@ export default function CartPanel({ cart, onUpdate, onRemove, open, onClose }) {
         </div>
       </div>
 
-      <button className="mt-4 w-full bg-orange-500 text-white py-3 rounded-xl font-medium">
+      <button className="mt-4  w-full bg-orange-500 text-white py-3 rounded-xl font-medium">
         Continue to Payment
       </button>
     </aside>

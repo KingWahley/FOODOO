@@ -7,6 +7,7 @@ import CartPanel from "./CartPanel";
 import { products } from "./data";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
+import { ShoppingCart } from "lucide-react";
 
 export default function ShopPage() {
   const [cart, setCart] = useState([]);
@@ -94,18 +95,33 @@ export default function ShopPage() {
         <button
           onClick={() => setCartOpen(true)}
           className="
-      fixed bottom-20 right-4
-      md:hidden
-      bg-orange-500 text-white
-      px-5 py-3
-      rounded-full
-      shadow-lg
-      font-medium
-      z-50
-      
-    "
+    fixed bottom-24 left-6
+    md:hidden
+    bg-orange-500 text-white
+    w-14 h-14
+    rounded-full
+    shadow-lg
+    flex items-center justify-center
+    z-50
+  "
+          aria-label="Open cart"
         >
-          View Cart ({cart.length})
+          <ShoppingCart size={22} />
+
+          {cart.length > 0 && (
+            <span
+              className="
+        absolute -top-1 -right-1
+        bg-white text-orange-500
+        text-xs font-bold
+        w-5 h-5
+        rounded-full
+        flex items-center justify-center
+      "
+            >
+              {cart.length}
+            </span>
+          )}
         </button>
       )}
 

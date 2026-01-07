@@ -1,9 +1,11 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { X, Maximize2, Minimize2 } from "lucide-react";
 
 export default function AIAgent() {
   const [open, setOpen] = useState(false);
+  const [fullscreen, setFullscreen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -19,7 +21,7 @@ export default function AIAgent() {
           {
             role: "assistant",
             content:
-              "Hi 👋 I’m Vijan your Foodle assistant. I can help you choose meals, suggest popular items, or guide your order. What are you craving?",
+              "Hi 👋 I’m Vijan, your Foodle assistant. I can help you choose meals, suggest popular items, or guide your order. What are you craving?",
           },
         ]);
         hasWelcomed.current = true;
@@ -29,8 +31,15 @@ export default function AIAgent() {
     });
   }
 
+  // Auto fullscreen on mobile
+  useEffect(() => {
+    if (open && window.innerWidth < 768) {
+      setFullscreen(true);
+    }
+  }, [open]);
+
   async function sendMessage() {
-    if (!input.trim()) return;
+    if (!input.trim() || loading) return;
 
     const newMessages = [...messages, { role: "user", content: input }];
 
@@ -38,18 +47,31 @@ export default function AIAgent() {
     setInput("");
     setLoading(true);
 
-    const res = await fetch("/api/ai", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ messages: newMessages }),
-    });
+    try {
+      const res = await fetch("/api/ai", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: newMessages }),
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    setMessages([
-      ...newMessages,
-      { role: "assistant", content: data.message ?? data.reply },
-    ]);
+      setMessages([
+        ...newMessages,
+        {
+          role: "assistant",
+          content: data.message ?? data.reply ?? "Sorry, I didn’t get that.",
+        },
+      ]);
+    } catch {
+      setMessages([
+        ...newMessages,
+        {
+          role: "assistant",
+          content: "Something went wrong. Please try again.",
+        },
+      ]);
+    }
 
     setLoading(false);
   }
@@ -64,15 +86,43 @@ export default function AIAgent() {
       </button>
 
       {open && (
-        <div className="fixed bottom-24 left-6 w-80 max-h-[70vh] bg-white rounded-2xl shadow-xl flex flex-col z-50">
-          <div className="p-4 border-b font-semibold">Food Assistant</div>
+        <div
+          className={`
+            fixed z-50 bg-white shadow-xl flex flex-col
+            ${
+              fullscreen
+                ? "inset-0 rounded-none"
+                : "bottom-24 left-6 w-80 max-h-[70vh] rounded-2xl"
+            }
+          `}
+        >
+          <div className="p-4 border-b flex items-center justify-between font-semibold">
+            <span>Food Assistant</span>
+            <div className="flex gap-3 text-sm">
+              <button
+                onClick={() => setFullscreen(!fullscreen)}
+                className="hidden md:flex p-2 rounded-full hover:bg-gray-100 text-gray-500 hover:text-black transition"
+                aria-label={fullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+              >
+                {fullscreen ? <Minimize2 size={18} /> : <Maximize2 size={18} />}
+              </button>
+
+              <button
+                onClick={() => setOpen(false)}
+                className="p-1 text-gray-500 hover:text-black transition"
+                aria-label="Close chat"
+              >
+                <X size={18} />
+              </button>
+            </div>
+          </div>
 
           <div className="flex-1 p-4 space-y-3 overflow-y-auto text-sm">
             {messages.map((m, i) => (
               <div
                 key={i}
-                className={`p-2 rounded-lg ${
-                  m.role === "user" ? "bg-orange-100 self-end" : "bg-gray-100"
+                className={`max-w-[85%] p-2 rounded-lg ${
+                  m.role === "user" ? "bg-orange-100 ml-auto" : "bg-gray-100"
                 }`}
               >
                 {m.content}
@@ -90,7 +140,7 @@ export default function AIAgent() {
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              className="flex-1 border rounded-lg px-3 py-2 text-sm"
+              className="flex-1 border rounded-lg px-3 py-2 text-[16px]"
               placeholder="Ask something…"
               onKeyDown={(e) => e.key === "Enter" && sendMessage()}
             />

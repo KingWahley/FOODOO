@@ -42,7 +42,6 @@ export async function POST(req) {
   try {
     const { messages } = await req.json();
 
-    // ✅ INIT SDK AT RUNTIME ONLY
     const groq = new Groq({
       apiKey: process.env.GROQ_API_KEY,
     });
