@@ -49,7 +49,7 @@ export default function Categories() {
         <div className="hidden md:grid grid-cols-3 gap-16">
           <CategoryItem src="/assets/burger.png" title="Chicken Burger" />
           <CategoryItem src="/assets/pzza.png" title="Chicken Pizza" />
-          <CategoryItem src="/assets/french.png" title="French Fries" />
+          <CategoryItem src="/assets/french2.png" title="French Fries" />
         </div>
       </div>
     </section>
