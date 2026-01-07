@@ -21,12 +21,10 @@ export default function CartPanel({ cart, onUpdate, onRemove, open, onClose }) {
     ${open ? "translate-y-0" : "translate-y-full md:translate-y-0"}
   `}
     >
-      {/* Drag handle (mobile only) */}
       <div className="md:hidden flex justify-center mb-3">
         <div className="w-10 h-1.5 rounded-full bg-gray-300" />
       </div>
 
-      {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-semibold">Current Order</h2>
 
@@ -35,7 +33,6 @@ export default function CartPanel({ cart, onUpdate, onRemove, open, onClose }) {
         </button>
       </div>
 
-      {/* Items (scrollable) */}
       <div className="flex-1 overflow-y-auto space-y-4">
         {cart.length === 0 && (
           <p className="text-sm text-gray-500 text-center mt-10">
@@ -45,7 +42,6 @@ export default function CartPanel({ cart, onUpdate, onRemove, open, onClose }) {
 
         {cart.map((item) => (
           <div key={item.id} className="flex gap-3 items-center">
-            {/* Image */}
             <div className="relative w-12 h-12 rounded-xl overflow-hidden">
               <Image
                 src={item.image}
@@ -55,7 +51,6 @@ export default function CartPanel({ cart, onUpdate, onRemove, open, onClose }) {
               />
             </div>
 
-            {/* Info */}
             <div className="flex-1">
               <p className="text-sm font-medium leading-tight">{item.name}</p>
               <p className="text-orange-500 font-semibold">
@@ -63,7 +58,6 @@ export default function CartPanel({ cart, onUpdate, onRemove, open, onClose }) {
               </p>
             </div>
 
-            {/* Qty */}
             <div className="flex items-center gap-2">
               <button
                 onClick={() => onUpdate(item.id, -1)}
@@ -82,7 +76,6 @@ export default function CartPanel({ cart, onUpdate, onRemove, open, onClose }) {
               </button>
             </div>
 
-            {/* Remove */}
             <button
               onClick={() => onRemove(item.id)}
               className="text-gray-400 hover:text-red-500"
@@ -93,7 +86,6 @@ export default function CartPanel({ cart, onUpdate, onRemove, open, onClose }) {
         ))}
       </div>
 
-      {/* Summary */}
       <div className="mt-4 bg-gray-50 rounded-xl p-4">
         <div className="flex justify-between text-sm text-gray-600">
           <span>Subtotal</span>
@@ -106,7 +98,6 @@ export default function CartPanel({ cart, onUpdate, onRemove, open, onClose }) {
         </div>
       </div>
 
-      {/* CTA */}
       <button className="mt-4 w-full bg-orange-500 text-white py-3 rounded-xl font-medium">
         Continue to Payment
       </button>

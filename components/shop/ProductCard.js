@@ -24,7 +24,6 @@ export default function ProductCard({
       shadow-sm hover:shadow-md
       transition relative
     ">
-      {/* Image */}
       <div className="relative h-32 md:h-40 mb-3 md:mb-4">
         <Image
           src={product.image}
@@ -33,7 +32,6 @@ export default function ProductCard({
           className="object-cover rounded-xl"
         />
 
-        {/* Toggle Add / Remove */}
         <button
           onClick={handleClick}
           className={`
@@ -52,7 +50,6 @@ export default function ProductCard({
         </button>
       </div>
 
-      {/* Info */}
       <h3 className="font-semibold text-sm md:text-base leading-tight">
         {product.name}
       </h3>
@@ -63,7 +60,6 @@ export default function ProductCard({
         </p>
       )}
 
-      {/* Price */}
       <p className="mt-2 text-orange-500 font-semibold text-sm md:text-base">
         ${product.price.toFixed(2)}
       </p>

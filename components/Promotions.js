@@ -4,7 +4,6 @@ export default function Promotions() {
   return (
     <section className="bg-white px-10 py-24 hidden sm:block">
       <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* LEFT – Large Promo */}
         <div className="relative col-span-1 lg:col-span-2 h-[320px] rounded-3xl overflow-hidden">
           <Image
             src="/assets/chips.jpg"
@@ -13,10 +12,8 @@ export default function Promotions() {
             className="object-cover"
           />
 
-          {/* Overlay */}
           <div className="absolute inset-0 bg-black/40" />
 
-          {/* Content */}
           <div className="absolute top-6 left-6 text-white">
             <h4 className="text-xl font-semibold">25% Discount</h4>
           </div>
@@ -26,9 +23,7 @@ export default function Promotions() {
           </div>
         </div>
 
-        {/* RIGHT – Stacked Promos */}
         <div className="flex flex-col gap-8">
-          {/* Top Right */}
           <div className="relative h-[150px] rounded-3xl overflow-hidden bg-[#9C6A1A]">
             <Image
               src="/assets/dessert.jpg"
@@ -46,7 +41,6 @@ export default function Promotions() {
             </div>
           </div>
 
-          {/* Bottom Right */}
           <div className="relative h-[150px] rounded-3xl overflow-hidden bg-[#FFD46B]">
             <Image
               src="/assets/tacos.jpg"

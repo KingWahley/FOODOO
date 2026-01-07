@@ -40,7 +40,6 @@ export default function Navbar() {
           </NavLink>
         </ul>
 
-        {/* Desktop Auth */}
         <div className="hidden md:flex items-center gap-6 text-sm">
           <button className="text-primary font-medium hover:opacity-80 transition">
             Login
@@ -50,7 +49,6 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Hamburger */}
         <button
           className="md:hidden flex flex-col gap-1"
           onClick={() => setOpen(!open)}
@@ -61,7 +59,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {open && (
         <div className="md:hidden bg-white border-t">
           <ul className="flex flex-col px-10 py-6 gap-6 text-sm">

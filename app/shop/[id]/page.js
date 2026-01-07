@@ -21,17 +21,14 @@
 //   return (
 //     <div className="min-h-screen bg-white px-4 py-6 md:py-16">
       
-//       {/* Header */}
 //       <div className="flex items-center justify-between mb-6 md:max-w-5xl md:mx-auto">
 //         <button onClick={() => router.back()} className="text-xl">←</button>
 //         <h2 className="font-medium">Order Details</h2>
 //         <button className="text-xl text-red-500">❤</button>
 //       </div>
 
-//       {/* Content */}
 //       <div className="md:max-w-5xl md:mx-auto md:grid md:grid-cols-2 md:gap-12">
         
-//         {/* Image */}
 //         <div className="relative aspect-square mb-8 md:mb-0">
 //           <Image
 //             src={product.image}
@@ -42,7 +39,6 @@
 //           />
 //         </div>
 
-//         {/* Info */}
 //         <div>
 //           <h1 className="text-3xl md:text-4xl font-semibold mb-4">
 //             {product.name}
@@ -69,7 +65,6 @@
 //             {product.desc}
 //           </p>
 
-//           {/* Desktop button */}
 //           <button
 //             onClick={() => addToCart(product, qty)}
 //             className="hidden md:block mt-8 w-full bg-black text-white py-4 rounded-full font-medium"
@@ -79,7 +74,6 @@
 //         </div>
 //       </div>
 
-//       {/* Mobile sticky button */}
 //       <button
 //         onClick={() => addToCart(product, qty)}
 //         className="

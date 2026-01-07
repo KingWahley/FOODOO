@@ -43,7 +43,6 @@ export default function TopBar({
           />
         </div>
 
-        {/* Filter button (icon-only on mobile) */}
         <button
           className="
             w-11 h-11 md:w-12 md:h-12
@@ -56,7 +55,6 @@ export default function TopBar({
         </button>
       </div>
 
-      {/* Categories */}
       <div
         className="
           mt-4 md:mt-6

@@ -1,4 +1,3 @@
-import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="bg-cream px-10 pt-20 pb-12">
@@ -20,6 +19,9 @@ export default function Footer() {
             <span className="hover:text-primary cursor-pointer">ⓕ</span>
           </div>
         </div>
+
+
+        
 
         <div>
           <h4 className="text-xl font-semibold text-primary mb-6">Contact</h4>

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Parallax from "./Parallax2";
 export default function Hero() {
+  
   return (
     <section className="bg-cream px-10 pt-10 pb-24">
       <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-2 items-center  gap-20">

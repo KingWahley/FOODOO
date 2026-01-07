@@ -1,10 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
+
 
 export default function Categories() {
   return (
     <section className="bg-white px-6 md:px-10 py-10">
       <div className="mx-auto max-w-7xl">
-        {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start gap-6 mb-16">
           <h2 className="text-4xl font-semibold leading-tight">
             Best <span className="text-primary">Delivered</span> <br />
@@ -17,9 +18,7 @@ export default function Categories() {
           </p>
         </div>
 
-        {/* MOBILE — Carousel */}
         <div className="relative md:hidden">
-          {/* Scroll cue */}
           <div className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2">
             <div className="w-20 h-32 bg-gradient-to-l from-white to-transparent flex items-center justify-end pr-4">
             </div>
@@ -40,7 +39,6 @@ export default function Categories() {
             <CategoryItem src="/assets/french2.png" title="French Fries" />
           </div>
 
-          {/* Dots */}
           <div className="mt-6 flex justify-center gap-3">
             <span className="w-2.5 h-2.5 rounded-full bg-gray-400" />
             <span className="w-2.5 h-2.5 rounded-full bg-gray-300" />
@@ -48,7 +46,6 @@ export default function Categories() {
           </div>
         </div>
 
-        {/* DESKTOP — Grid */}
         <div className="hidden md:grid grid-cols-3 gap-16">
           <CategoryItem src="/assets/burger.png" title="Chicken Burger" />
           <CategoryItem src="/assets/pzza.png" title="Chicken Pizza" />
@@ -66,9 +63,12 @@ function CategoryItem({ src, title }) {
         <Image src={src} alt={title} fill className="object-contain" />
       </div>
       <h4 className="text-lg font-semibold">{title}</h4>
+      <Link href="/shop">
       <button className="mt-2 text-sm text-primary hover:underline">
         Order Now →
       </button>
+      </Link>
+      
     </div>
   );
 }

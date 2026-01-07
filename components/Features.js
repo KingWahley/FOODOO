@@ -11,7 +11,6 @@ export default function Features() {
       <div className="relative px-4 md:px-10 -mt-16 pb-20">
         <div className="mx-auto max-w-5xl bg-white rounded-3xl shadow-md px-6 md:px-12 py-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {/* Fast Delivery */}
             <div className="flex items-start gap-5">
               <div className="p-5 rounded-full bg-[#FFE3B3] flex items-center justify-center">
                 <Truck className="w-6 h-6 text-orange-500" />
@@ -27,7 +26,6 @@ export default function Features() {
               </div>
             </div>
 
-            {/* Fresh Food */}
             <div className="flex items-start gap-5">
               <div className="p-5 rounded-full bg-[#FFE3B3] flex items-center justify-center">
                 <RefreshCcw className="w-6 h-6 text-orange-500" />
@@ -43,7 +41,6 @@ export default function Features() {
               </div>
             </div>
 
-            {/* Free Delivery */}
             <div className="flex items-start gap-5">
               <div className="p-5 rounded-full bg-[#FFE3B3] flex items-center justify-center">
                 <BadgeCheck className="w-6 h-6 text-orange-500" />

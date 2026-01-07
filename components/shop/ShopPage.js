@@ -38,7 +38,6 @@ export default function ShopPage() {
     );
   }
 
-  // 🔥 SEARCH + CATEGORY FILTER
   const filteredProducts = useMemo(() => {
     return products.filter((p) => {
       const matchSearch = p.name.toLowerCase().includes(search.toLowerCase());
@@ -51,7 +50,6 @@ export default function ShopPage() {
     });
   }, [search, category]);
 
-  // ✅ CART LOOKUP (for product cards)
   const cartMap = useMemo(() => {
     const map = {};
     cart.forEach((item) => {
