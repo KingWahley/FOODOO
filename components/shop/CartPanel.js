@@ -25,18 +25,16 @@ export default function CartPanel({ open, onClose }) {
         p-4 md:p-6
         shadow-[0_-4px_20px_rgba(0,0,0,0.1)] md:shadow-lg
         flex flex-col
-        z-40
+        z-99
         rounded-t-2xl md:rounded-none
         transition-transform duration-300
         ${open ? "translate-y-0" : "translate-y-full md:translate-y-0"}
       `}
     >
-      {/* Drag Handle */}
       <div className="md:hidden flex justify-center mb-3">
         <div className="w-10 h-1.5 rounded-full bg-gray-300" />
       </div>
 
-      {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-semibold">Current Order</h2>
 
@@ -49,7 +47,6 @@ export default function CartPanel({ open, onClose }) {
         </button>
       </div>
 
-      {/* Items */}
       <div className="flex-1 overflow-y-auto space-y-4">
         {cart.length === 0 && (
           <p className="text-sm text-gray-500 text-center mt-10">
@@ -108,7 +105,6 @@ export default function CartPanel({ open, onClose }) {
         ))}
       </div>
 
-      {/* Summary */}
       <div className="mt-4 bg-gray-50 rounded-xl p-4">
         <div className="flex justify-between text-sm text-gray-600">
           <span>Subtotal</span>
@@ -121,7 +117,6 @@ export default function CartPanel({ open, onClose }) {
         </div>
       </div>
 
-      {/* CTA */}
       <button
         onClick={() => {
           onClose?.();
