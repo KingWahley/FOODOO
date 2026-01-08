@@ -83,7 +83,6 @@ export default function RecipesPage() {
               key={recipe.id}
               className="bg-white rounded-2xl p-3 shadow-sm text-left"
             >
-              {/* Card click area */}
               <div
                 onClick={() => router.push(`/recipes/${recipe.id}`)}
                 className="cursor-pointer"
@@ -104,9 +103,7 @@ export default function RecipesPage() {
                 <p className="text-xs text-gray-400 mt-1">{recipe.calories}</p>
               </div>
 
-              {/* Footer actions */}
               <div className="mt-3 flex items-center justify-between">
-                {/* WATCH BUTTON (its own cartoon CTA) */}
                 <button
                   onClick={() => window.open(recipe.video, "_blank")}
                   className="
