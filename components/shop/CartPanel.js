@@ -25,7 +25,7 @@ export default function CartPanel({ open, onClose }) {
         p-4 md:p-6
         shadow-[0_-4px_20px_rgba(0,0,0,0.1)] md:shadow-lg
         flex flex-col
-        z-99
+        z-20
         rounded-t-2xl md:rounded-none
         transition-transform duration-300
         ${open ? "translate-y-0" : "translate-y-full md:translate-y-0"}
