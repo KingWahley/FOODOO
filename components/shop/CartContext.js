@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 
 const CartContext = createContext(null);
 
@@ -10,6 +10,7 @@ export function CartProvider({ children }) {
   function addToCart(product, qty = 1) {
     setCart((prev) => {
       const found = prev.find((p) => p.id === product.id);
+
       if (found) {
         return prev.map((p) =>
           p.id === product.id
@@ -17,16 +18,61 @@ export function CartProvider({ children }) {
             : p
         );
       }
+
       return [...prev, { ...product, qty }];
     });
+  }
+
+  function updateQty(id, delta) {
+    setCart((prev) =>
+      prev
+        .map((p) =>
+          p.id === id ? { ...p, qty: p.qty + delta } : p
+        )
+        .filter((p) => p.qty > 0)
+    );
   }
 
   function removeFromCart(id) {
     setCart((prev) => prev.filter((p) => p.id !== id));
   }
 
+  function clearCart() {
+    setCart([]);
+  }
+
+  // ✅ Derived values (no re-renders waste)
+  const totalItems = useMemo(
+    () => cart.reduce((sum, item) => sum + item.qty, 0),
+    [cart]
+  );
+
+  const totalPrice = useMemo(
+    () => cart.reduce((sum, item) => sum + item.price * item.qty, 0),
+    [cart]
+  );
+
+  const cartMap = useMemo(() => {
+    const map = {};
+    cart.forEach((item) => {
+      map[item.id] = item.qty;
+    });
+    return map;
+  }, [cart]);
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        cartMap,
+        totalItems,
+        totalPrice,
+        addToCart,
+        updateQty,
+        removeFromCart,
+        clearCart,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

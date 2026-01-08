@@ -2,8 +2,21 @@
 
 import { useState, useRef, useEffect } from "react";
 import { X, Maximize2, Minimize2 } from "lucide-react";
+import { useCart } from "@/components/shop/CartContext";
+import { products } from "@/components/shop/data";
+import { Bot } from "lucide-react";
+
+const NUMBER_WORDS = {
+  one: 1,
+  two: 2,
+  three: 3,
+  four: 4,
+  five: 5,
+};
 
 export default function AIAgent() {
+  const { addToCart } = useCart();
+
   const [open, setOpen] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
   const [messages, setMessages] = useState([]);
@@ -21,7 +34,7 @@ export default function AIAgent() {
           {
             role: "assistant",
             content:
-              "Hi 👋 I’m Vijan, your Foodle assistant. I can help you choose meals, suggest popular items, or guide your order. What are you craving?",
+              "Hi, I am Vijan, your Foodle assistant. I can suggest meals or add items to your cart. What would you like?",
           },
         ]);
         hasWelcomed.current = true;
@@ -31,17 +44,45 @@ export default function AIAgent() {
     });
   }
 
-  // Auto fullscreen on mobile
   useEffect(() => {
     if (open && window.innerWidth < 768) {
       setFullscreen(true);
     }
   }, [open]);
 
+  function tryAddToCartFromText(text) {
+    const lower = text.toLowerCase();
+
+    let qty = 1;
+    const numberMatch = lower.match(/\b\d+\b/);
+    if (numberMatch) {
+      qty = parseInt(numberMatch[0], 10);
+    } else {
+      for (const word in NUMBER_WORDS) {
+        if (lower.includes(word)) {
+          qty = NUMBER_WORDS[word];
+          break;
+        }
+      }
+    }
+
+    const product =
+      products.find((p) => lower.includes(p.name.toLowerCase())) ||
+      products.find((p) => lower.includes(p.category.replace("-", " ")));
+
+    if (product) {
+      addToCart(product, qty);
+      return `Added ${qty} ${product.name} to your cart.`;
+    }
+
+    return null;
+  }
+
   async function sendMessage() {
     if (!input.trim() || loading) return;
 
-    const newMessages = [...messages, { role: "user", content: input }];
+    const userText = input;
+    const newMessages = [...messages, { role: "user", content: userText }];
 
     setMessages(newMessages);
     setInput("");
@@ -55,14 +96,16 @@ export default function AIAgent() {
       });
 
       const data = await res.json();
+      let reply =
+        data.reply ?? data.message ?? "Sorry, I did not understand that.";
 
-      setMessages([
-        ...newMessages,
-        {
-          role: "assistant",
-          content: data.message ?? data.reply ?? "Sorry, I didn’t get that.",
-        },
-      ]);
+      const cartResult = tryAddToCartFromText(userText);
+
+      if (cartResult) {
+        reply = cartResult;
+      }
+
+      setMessages([...newMessages, { role: "assistant", content: reply }]);
     } catch {
       setMessages([
         ...newMessages,
@@ -81,18 +124,23 @@ export default function AIAgent() {
       <button
         onClick={toggleOpen}
         className="
-                  fixed
-                    bottom-6 left-6
-                    md:left-auto md:right-6
-                    md:bottom-auto md:top-5
-                    z-50
-                    bg-black text-white
-                    px-4 py-3
-                    rounded-full
-                    shadow-lg
-                  "
+    fixed
+    bottom-4 left-6
+    md:left-auto md:right-6
+    md:bottom-auto md:top-5
+    z-50
+    bg-black text-white
+    px-4 py-3
+    rounded-full
+    shadow-lg
+    flex items-center gap-2
+    hover:bg-gray-900
+    transition
+  "
+        aria-label="Open AI assistant"
       >
-        🤖 AI Help
+        <Bot size={18} />
+        <span className="">AI Help</span>
       </button>
 
       {open && (
@@ -106,21 +154,20 @@ export default function AIAgent() {
             }
           `}
         >
+          {/* Header */}
           <div className="p-4 border-b flex items-center justify-between font-semibold">
             <span>Food Assistant</span>
-            <div className="flex gap-3 text-sm">
+            <div className="flex gap-2">
               <button
                 onClick={() => setFullscreen(!fullscreen)}
-                className="hidden md:flex p-2 rounded-full hover:bg-gray-100 text-gray-500 hover:text-black transition"
-                aria-label={fullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+                className="hidden md:flex p-2 rounded-full hover:bg-gray-100 text-gray-500"
               >
                 {fullscreen ? <Minimize2 size={18} /> : <Maximize2 size={18} />}
               </button>
 
               <button
                 onClick={() => setOpen(false)}
-                className="p-1 text-gray-500 hover:text-black transition"
-                aria-label="Close chat"
+                className="p-1 text-gray-500 hover:text-black"
               >
                 <X size={18} />
               </button>
@@ -156,7 +203,7 @@ export default function AIAgent() {
             />
             <button
               onClick={sendMessage}
-              className="bg-black text-white px-4 py-4 rounded-lg"
+              className="bg-black text-white px-4 py-3 rounded-lg"
             >
               Send
             </button>

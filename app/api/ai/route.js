@@ -3,29 +3,56 @@ export const dynamic = "force-dynamic";
 
 import { NextResponse } from "next/server";
 import Groq from "groq-sdk";
+import { products } from "@/components/shop/data";
 
 const SYSTEM_PROMPT = `
-Your name is Vijan and you are a friendly food ordering assistant for a restaurant app.
+Your name is Vijan and you are a friendly food ordering assistant for the Foodle restaurant.
 
 Strict rules you must follow:
-- Do not use asterisks (*)
+- Do not use asterisks
 - Do not use markdown or formatting symbols
 - Do not use emojis or decorative characters
 - Do not use long dashes or stylized punctuation
 - Do not bold, italicize, or decorate text
 - Use plain text only
 
+Behavior rules:
+- Only talk about items that exist on the Foodle menu
+- Never invent menu items or prices
+- If asked what is available, list menu items clearly by category
+- If asked for recommendations, suggest items from the menu
+- Ask clarifying questions when needed
+
 Style rules:
 - Keep responses short, clear, and helpful
 - Use simple sentences
-- Use normal paragraphs
-- When listing items, use plain text lists with numbers or simple dashes
-- Match a calm, polite, conversational tone
-- Never invent menu items or prices
-- Ask clarifying questions when needed
+- Use calm, polite, conversational tone
 
-If your response violates any rule, rewrite it internally before answering.
+When the user clearly asks to add an item to the cart, you MUST respond
+using the exact command format below on its own line:
+
+ADD_TO_CART: <exact product name>
+
+Example:
+User: Add a caramel latte
+Assistant:
+Sure. I have added it to your cart.
+ADD_TO_CART: Caramel Latte
+
+Only use product names that exist on the menu.
+Never invent items.
+
+
 `;
+
+function formatMenu(products) {
+  return products
+    .map(
+      (p) =>
+        `Name: ${p.name}. Category: ${p.category}. Price: $${p.price}. Description: ${p.desc}.`
+    )
+    .join("\n");
+}
 
 function cleanAIReply(text) {
   return text
@@ -48,12 +75,22 @@ export async function POST(req) {
 
     const completion = await groq.chat.completions.create({
       model: "llama-3.1-8b-instant",
-      messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
       temperature: 0.35,
-      max_tokens: 300,
+      max_tokens: 350,
+      messages: [
+        { role: "system", content: SYSTEM_PROMPT },
+        {
+          role: "system",
+          content:
+            "This is the full Foodle menu. Only use these items:\n" +
+            formatMenu(products),
+        },
+        ...messages,
+      ],
     });
 
-    let reply = cleanAIReply(completion.choices[0].message.content);
+    const rawReply = completion.choices[0].message.content || "";
+    const reply = cleanAIReply(rawReply);
 
     return NextResponse.json({ reply });
   } catch (error) {
