@@ -49,28 +49,37 @@ export default function AIAgent() {
     }
   }, [open]);
 
+  const ADD_INTENT_KEYWORDS = ["add", "order", "buy", "get", "put", "want"];
+
+  const PRICE_INTENT_KEYWORDS = ["price", "cost", "how much", "how much is"];
+
+  function hasAny(text, keywords) {
+    return keywords.some((k) => text.includes(k));
+  }
+
   function tryAddToCartFromText(text) {
     const lower = text.toLowerCase();
+
+    // ❌ If user is asking about price, never add
+    if (hasAny(lower, PRICE_INTENT_KEYWORDS)) {
+      return null;
+    }
+
+    // ✅ Only proceed if add intent exists
+    if (!hasAny(lower, ADD_INTENT_KEYWORDS)) {
+      return null;
+    }
 
     let qty = 1;
     const num = lower.match(/\b\d+\b/);
     if (num) qty = parseInt(num[0], 10);
-    else {
-      for (const w in NUMBER_WORDS) {
-        if (lower.includes(w)) qty = NUMBER_WORDS[w];
-      }
-    }
 
-    const product =
-      products.find((p) => lower.includes(p.name.toLowerCase())) ||
-      products.find((p) => lower.includes(p.category.replace("-", " ")));
+    const product = products.find((p) => lower.includes(p.name.toLowerCase()));
 
-    if (product) {
-      addToCart(product, qty);
-      return `Added ${qty} ${product.name} to your cart.`;
-    }
+    if (!product) return null;
 
-    return null;
+    addToCart(product, qty);
+    return `Added ${qty} ${product.name} to your cart.`;
   }
 
   async function sendMessage() {
