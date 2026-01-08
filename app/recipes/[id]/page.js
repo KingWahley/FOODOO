@@ -17,7 +17,6 @@ export default function RecipeDetailPage() {
 
   return (
     <main className="min-h-screen bg-white pb-24">
-      {/* Image */}
       <div className="relative h-80">
         <Image
           src={recipe.image}
@@ -38,14 +37,12 @@ export default function RecipeDetailPage() {
         </button>
       </div>
 
-      {/* Content */}
       <div className="-mt-12 bg-white rounded-t-3xl px-5 pt-6">
         <h1 className="text-2xl font-semibold">
           {recipe.title}
         </h1>
         <p className="text-sm text-gray-500">{recipe.calories}</p>
 
-        {/* Stats */}
         <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
           <div className="text-center">
             <p className="font-semibold">{recipe.recook}</p>
@@ -60,7 +57,6 @@ export default function RecipeDetailPage() {
           </div>
         </div>
 
-        {/* Ingredients */}
         <h3 className="mt-6 font-semibold">Ingredients</h3>
 
         <div className="mt-4 grid grid-cols-3 gap-4 text-xs">
@@ -75,7 +71,6 @@ export default function RecipeDetailPage() {
         </div>
       </div>
 
-      {/* CTA */}
       <button
         className="
           fixed bottom-6 left-1/2 -translate-x-1/2

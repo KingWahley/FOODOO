@@ -59,9 +59,8 @@ export default function Navbar() {
         <div className="md:hidden bg-white border-t">
           <ul className="flex flex-col px-10 py-6 gap-6 text-sm">
             <MobileLink href="/" active={isActive("/")}>Home</MobileLink>
-            <MobileLink href="/shop" active={isActive("/shop")}>Shop</MobileLink>
+            <MobileLink href="/shop" active={isActive("/shop")}>Menu</MobileLink>
             <MobileLink href="/recipes" active={isActive("/recipes")}>Recipe</MobileLink>
-            <MobileLink href="/menu" active={isActive("/menu")}>Menu</MobileLink>
             <MobileLink href="/about" active={isActive("/about")}>About Us</MobileLink>
           </ul>
         </div>
