@@ -156,7 +156,7 @@ export default function AIAgent() {
             />
             <button
               onClick={sendMessage}
-              className="bg-black text-white px-4 rounded-lg"
+              className="bg-black text-white px-4 py-4 rounded-lg"
             >
               Send
             </button>

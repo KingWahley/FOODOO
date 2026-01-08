@@ -83,7 +83,7 @@ export default function RecipeDetailPage() {
       </div>
 
       <button
-        className="mt-4 flex items-center gap-2 bg-orange-500 text-white
+        className="mt-4 flex items-center gap-2 bg-orange-500 text-white hover:bg-white hover:text-orange-500
  text-sm px-6 py-4 rounded-full font-medium  fixed bottom-6 left-1/2 -translate-x-1/2
           font-medium shadow-lg"
       >
