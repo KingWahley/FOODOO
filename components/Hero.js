@@ -26,7 +26,7 @@ export default function Hero() {
               <span className="w-6 h-6 p-4 rounded-full bg-white/20 flex items-center justify-center">
                 🛍️
               </span>
-              Buy Now
+              Eat Now
             </Link>
             <Link href="https://youtube.com/shorts/tcTXldE1xls?si=QhUY6RVGn-7nAadt">
               <button className="flex border border-primary rounded-full p-2 items-center gap-3 text-sm font-medium text-gray-700  hover:text-primary transition">
