@@ -27,7 +27,7 @@ export default function RecipesPage() {
     <div>
       <Navbar />
       <main className="min-h-screen bg-gray-50 px-4 pb-28">
-        <div className="sticky top-20 z-20 mt-5 bg-white">
+        <div className="sticky top-16 py-4 z-20 mt-5 bg-white">
           <div className=" flex items-center gap-3 bg-white rounded-xl px-4 py-3 shadow-sm">
             <Search size={16} className="text-gray-400" />
             <input

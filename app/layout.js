@@ -1,5 +1,6 @@
 import "./globals.css";
-import AIAgent from "../components/Ai/AIAgent";
+import { CartProvider } from "@/components/shop/CartContext";
+import AIAgent from "@/components/Ai/AIAgent";
 
 export const metadata = {
   title: "Foodle",
@@ -9,9 +10,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
-        {children}
-        <AIAgent />
+      <body suppressHydrationWarning>
+        <CartProvider>
+          {children}
+          <AIAgent />
+        </CartProvider>
       </body>
     </html>
   );

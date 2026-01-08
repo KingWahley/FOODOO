@@ -8,36 +8,14 @@ import { products } from "./data";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { ShoppingCart } from "lucide-react";
+import { useCart } from "@/components/shop/CartContext";
 
 export default function ShopPage() {
-  const [cart, setCart] = useState([]);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
   const [cartOpen, setCartOpen] = useState(false);
 
-  function removeFromCart(id) {
-    setCart((prev) => prev.filter((p) => p.id !== id));
-  }
-
-  function addToCart(product) {
-    setCart((prev) => {
-      const found = prev.find((p) => p.id === product.id);
-      if (found) {
-        return prev.map((p) =>
-          p.id === product.id ? { ...p, qty: p.qty + 1 } : p
-        );
-      }
-      return [...prev, { ...product, qty: 1 }];
-    });
-  }
-
-  function updateQty(id, delta) {
-    setCart((prev) =>
-      prev
-        .map((p) => (p.id === id ? { ...p, qty: p.qty + delta } : p))
-        .filter((p) => p.qty > 0)
-    );
-  }
+  const { cart, addToCart, removeFromCart } = useCart();
 
   const filteredProducts = useMemo(() => {
     return products.filter((p) => {
@@ -81,13 +59,7 @@ export default function ShopPage() {
             />
           </main>
 
-          <CartPanel
-            cart={cart}
-            onUpdate={updateQty}
-            onRemove={removeFromCart}
-            open={cartOpen}
-            onClose={() => setCartOpen(false)}
-          />
+          <CartPanel open={cartOpen} onClose={() => setCartOpen(false)} />
         </div>
       </div>
 

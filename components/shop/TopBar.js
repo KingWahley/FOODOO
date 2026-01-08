@@ -33,7 +33,7 @@ export default function TopBar({
             type="text"
             value={search}
             onChange={(e) => onSearch(e.target.value)}
-            placeholder="Search product..."
+            placeholder="Search Menu..."
             className="
               w-full outline-none
               text-sm md:text-base
@@ -43,7 +43,7 @@ export default function TopBar({
           />
         </div>
 
-        <button
+        {/* <button
           className="
             w-11 h-11 md:w-12 md:h-12
             bg-white rounded-xl shadow-sm
@@ -52,7 +52,7 @@ export default function TopBar({
           "
         >
           ⚲
-        </button>
+        </button> */}
       </div>
 
       <div

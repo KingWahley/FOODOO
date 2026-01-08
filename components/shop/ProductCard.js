@@ -18,12 +18,19 @@ export default function ProductCard({
   }
 
   return (
-    <div className="
-      bg-white rounded-2xl
-      p-3 md:p-4
-      shadow-sm hover:shadow-md
-      transition relative
-    ">
+    <div
+  className="
+    h-full
+    bg-white
+    rounded-2xl
+    p-3 md:p-4
+    shadow-sm
+    hover:shadow-md
+    transition
+    flex flex-col
+  "
+>
+
       <div className="relative h-32 md:h-40 mb-3 md:mb-4">
         <Image
           src={product.image}
