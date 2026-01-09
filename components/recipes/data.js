@@ -10,16 +10,10 @@ export const recipes = [
     servings: 2,
     difficulty: "Medium",
     image: "/assets/spccy.webp",
-    ingredients: [
-      "Noodle",
-      "Chicken",
-      "Vegetable",
-      "Onion",
-      "Shrimp",
-    ],
+    ingredients: ["Noodle", "Chicken", "Vegetable", "Onion", "Shrimp"],
     description:
-      "A warm and spicy ramen dish with rich broth, tender chicken, shrimp, and fresh vegetables.",
-    video: "https://google.com",
+      "This spicy ramen noodle bowl delivers deep, comforting flavors with a rich, slow-simmered broth. Tender chicken and juicy shrimp are paired with springy noodles and fresh vegetables, creating a perfectly balanced dish that is both warming and satisfying. Ideal for spice lovers who enjoy bold, layered flavors.",
+    video: "https://youtube.com/shorts/xItNJK2cMGg?si=CiOZATxKUACyw-R2",
   },
 
   {
@@ -35,8 +29,8 @@ export const recipes = [
     image: "/assets/cheese.jpg",
     ingredients: ["Bread", "Cheese", "Butter"],
     description:
-      "A crispy grilled sandwich with melted cheese inside.",
-    video: "https://google.com",
+      "A classic grilled cheese sandwich made with golden, buttery bread and a rich, melted cheese center. Crispy on the outside and irresistibly gooey on the inside, this quick and comforting recipe is perfect for breakfast, lunch, or a light snack.",
+    video: "https://youtube.com/shorts/1FQx6YkXLvQ?si=yyq9Z_vf9OT781DB",
   },
 
   {
@@ -52,7 +46,58 @@ export const recipes = [
     image: "/assets/Tasty-Chocolate-Ice-Cream.jpg",
     ingredients: ["Milk", "Cocoa", "Sugar"],
     description:
-      "Creamy homemade chocolate ice cream.",
-    video: "https://google.com",
+      "A smooth and creamy chocolate ice cream made with rich cocoa and fresh milk. This indulgent dessert offers a deep chocolate flavor with a silky texture, perfect for cooling down on warm days or enjoying as a sweet treat anytime.",
+    video: "https://youtube.com/shorts/NTbJRS-GKGo?si=XlCmhM94ChIjYwKu",
+  },
+
+  {
+    id: "classic-pancakes",
+    title: "Classic Pancakes",
+    category: "recommend",
+    calories: "260 kcal",
+    time: "12 mins",
+    rating: 4.6,
+    recook: "1.9M",
+    servings: 2,
+    difficulty: "Easy",
+    image: "/assets/classic-pancakes.jpeg",
+    ingredients: ["Flour", "Milk", "Egg", "Butter", "Sugar"],
+    description:
+      "Soft, fluffy pancakes cooked to golden perfection. Lightly sweet with a tender texture, these pancakes pair beautifully with syrup, fruit, or butter. A timeless breakfast favorite that is quick to prepare and loved by all ages.",
+    video: "https://youtube.com/shorts/LAYFxuyVo4Q?si=8cNjeEkJ737UPwR8",
+  },
+
+  {
+    id: "chicken-fried-rice",
+    title: "Chicken Fried Rice",
+    category: "recommend",
+    calories: "320 kcal",
+    time: "20 mins",
+    rating: 4.7,
+    recook: "2.8M",
+    servings: 2,
+    difficulty: "Medium",
+    image: "/assets/chicken-fried-rice.jpg",
+    ingredients: ["Rice", "Chicken", "Egg", "Vegetables", "Soy Sauce"],
+    description:
+      "A flavorful chicken fried rice made with perfectly cooked rice, tender chicken pieces, scrambled eggs, and fresh vegetables. Stir-fried over high heat for a smoky aroma, this dish is both hearty and satisfying, making it a great all-in-one meal.",
+    video: "https://youtube.com/shorts/6rNgZCguLqk?si=_ipJ7fUEAKyICYr3",
+  },
+
+  {
+    id: "vanilla-milkshake",
+    title: "Vanilla Milkshake",
+    category: "ice",
+    calories: "190 kcal",
+    time: "5 mins",
+    rating: 4.4,
+    recook: "1.4M",
+    servings: 1,
+    difficulty: "Easy",
+    image: "/assets/vanilla-milkshake.jpg",
+    ingredients: ["Milk", "Vanilla Ice Cream", "Sugar"],
+    description:
+      "A classic vanilla milkshake blended until smooth and creamy. Light, refreshing, and perfectly sweet, this milkshake is a quick treat that pairs well with any meal or stands alone as a simple dessert.",
+    video: "https://youtube.com/shorts/F-tJ5AuAtkQ?si=Z1WU7vIwUd1vrx1H",
   },
 ];

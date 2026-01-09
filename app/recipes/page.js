@@ -28,7 +28,7 @@ export default function RecipesPage() {
       <Navbar />
       <main className="min-h-screen bg-gray-50 px-4 pb-28">
         <div className="sticky top-16 py-4 z-20 mt-5 bg-white">
-          <div className=" flex items-center gap-3 bg-white rounded-xl px-4 py-3 shadow-sm">
+          <div className=" flex items-center gap-3 bg-white rounded-xl px-4 py-6 shadow-sm">
             <Search size={16} className="text-gray-400" />
             <input
               value={search}
@@ -61,7 +61,7 @@ export default function RecipesPage() {
           </div>
         </div>
 
-        <div className="mt-6 bg-orange-500 rounded-2xl p-5 flex items-center justify-between text-white">
+        <div className="mt-6 md:hidden bg-orange-500 rounded-2xl p-5 flex items-center justify-between text-white">
           <div>
             <h2 className="text-lg font-semibold leading-tight">
               Find your food <br /> recipe easily

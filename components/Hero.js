@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import Parallax from "./Parallax2";
+import { ShoppingBag } from "lucide-react";
+
 export default function Hero() {
-  
   return (
     <section className="bg-cream px-10 pt-10 pb-24">
       <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-2 items-center  gap-20">
@@ -21,10 +22,26 @@ export default function Hero() {
           <div className="mt-10 flex items-center gap-6">
             <Link
               href="/shop"
-              className="flex items-center gap-3 bg-primary text-white px-2 w-40 py-3 rounded-full text-sm font-medium shadow-sm hover:opacity-90 transition"
+              className="
+    flex items-center gap-3
+    bg-primary text-white
+    px-2 w-40 py-3
+    rounded-full
+    text-sm font-medium
+    shadow-sm
+    hover:opacity-90
+    transition
+  "
             >
-              <span className="w-6 h-6 p-4 rounded-full bg-white/20 flex items-center justify-center">
-                🛍️
+              <span
+                className="
+    w-8 h-8
+    rounded-full
+    bg-white/20
+    flex items-center justify-center
+  "
+              >
+                <ShoppingBag size={16} />
               </span>
               Eat Now
             </Link>

@@ -13,10 +13,9 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 w-full bg-white shadow-sm">
       <div className="mx-auto max-w-7xl px-10 py-6 flex items-center justify-between">
-
-        <h1 className="text-xl font-semibold tracking-tight">
-          Foodle
-        </h1>
+        <Link href="/">
+          <h1 className="text-xl font-semibold tracking-tight">Foodle</h1>
+        </Link>
 
         <ul className="hidden md:flex items-center gap-10 text-sm">
           <NavLink href="/" active={isActive("/")}>
@@ -58,17 +57,24 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden bg-white border-t">
           <ul className="flex flex-col px-10 py-6 gap-6 text-sm">
-            <MobileLink href="/" active={isActive("/")}>Home</MobileLink>
-            <MobileLink href="/shop" active={isActive("/shop")}>Menu</MobileLink>
-            <MobileLink href="/recipes" active={isActive("/recipes")}>Recipe</MobileLink>
-            <MobileLink href="/about" active={isActive("/about")}>About Us</MobileLink>
+            <MobileLink href="/" active={isActive("/")}>
+              Home
+            </MobileLink>
+            <MobileLink href="/shop" active={isActive("/shop")}>
+              Menu
+            </MobileLink>
+            <MobileLink href="/recipes" active={isActive("/recipes")}>
+              Recipe
+            </MobileLink>
+            <MobileLink href="/about" active={isActive("/about")}>
+              About Us
+            </MobileLink>
           </ul>
         </div>
       )}
     </nav>
   );
 }
-
 
 function NavLink({ href, active, children }) {
   return (
@@ -90,9 +96,7 @@ function MobileLink({ href, active, children }) {
   return (
     <Link
       href={href}
-      className={`font-medium ${
-        active ? "text-primary" : "text-gray-700"
-      }`}
+      className={`font-medium ${active ? "text-primary" : "text-gray-700"}`}
     >
       {children}
     </Link>
