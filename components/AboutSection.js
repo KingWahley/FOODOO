@@ -12,7 +12,7 @@ export default function AboutSection() {
             our kitchen
           </h2>
 
-          <p className="mt-6 text-gray-600 text-base md:text-lg leading-relaxed">
+          <p className="mt-6 text-gray-600 text-base md:w-[80%] md:text-lg leading-relaxed">
             From classic favorites to modern culinary creations, our menu is
             designed with intention. Every dish is prepared using fresh
             ingredients, traditional techniques, and a passion for flavor.
