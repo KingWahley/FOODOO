@@ -43,8 +43,9 @@ export default function ShopPage() {
 
       <div className="mx-auto max-w-7xl">
         <div className="md:flex md:gap-8">
-          <main className="flex-1 px-4 py-6 md:px-8 md:py-8">
+          <main className="flex-1 px-4 py-4 md:px-8 ">
             <TopBar
+           
               search={search}
               onSearch={setSearch}
               activeCategory={category}

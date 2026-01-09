@@ -9,10 +9,7 @@ import { products } from "@/components/shop/data";
 export default function CheckoutPage() {
   const { cart, addToCart, removeFromCart, updateQty } = useCart();
 
-  const subtotal = cart.reduce(
-    (sum, item) => sum + item.price * item.qty,
-    0
-  );
+  const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
 
   const relatedItems = products
     .filter(
@@ -32,11 +29,12 @@ export default function CheckoutPage() {
         </h1>
 
         <div className="md:grid md:grid-cols-3 md:gap-8">
+          <div className="md:hidden flex justify-center mb-3">
+            <div className="w-10 h-1.5 rounded-full bg-gray-300" />
+          </div>
           <section className="md:col-span-2 space-y-4">
             {cart.length === 0 ? (
-              <p className="text-gray-500">
-                Your cart is empty.
-              </p>
+              <p className="text-gray-500">Your cart is empty.</p>
             ) : (
               cart.map((item) => (
                 <div
@@ -53,9 +51,7 @@ export default function CheckoutPage() {
                   </div>
 
                   <div className="flex-1">
-                    <h4 className="font-medium text-sm">
-                      {item.name}
-                    </h4>
+                    <h4 className="font-medium text-sm">{item.name}</h4>
                     <p className="text-xs text-gray-500">
                       ${item.price.toFixed(2)}
                     </p>
@@ -68,9 +64,7 @@ export default function CheckoutPage() {
                         <Minus size={14} />
                       </button>
 
-                      <span className="text-sm">
-                        {item.qty}
-                      </span>
+                      <span className="text-sm">{item.qty}</span>
 
                       <button
                         onClick={() => updateQty(item.id, 1)}
@@ -134,12 +128,10 @@ export default function CheckoutPage() {
           </section>
 
           {cart.length === 0 ? (
-              <p className="">
-               
-              </p>
-            ) : (
-              <aside
-            className="
+            <p className=""></p>
+          ) : (
+            <aside
+              className="
               mt-8
               sticky bottom-0
               md:static md:mt-0
@@ -149,34 +141,31 @@ export default function CheckoutPage() {
               shadow-sm
               h-fit
             "
-          >
-            <h3 className="font-semibold mb-4">
-              Order Summary
-            </h3>
+            >
+              <h3 className="font-semibold mb-4">Order Summary</h3>
 
-            <div className="flex justify-between text-sm text-gray-600">
-              <span>Subtotal</span>
-              <span>${subtotal.toFixed(2)}</span>
-            </div>
+              <div className="flex justify-between text-sm text-gray-600">
+                <span>Subtotal</span>
+                <span>${subtotal.toFixed(2)}</span>
+              </div>
 
-            <div className="flex justify-between text-sm text-gray-600 mt-2">
-              <span>Delivery</span>
-              <span>Free</span>
-            </div>
+              <div className="flex justify-between text-sm text-gray-600 mt-2">
+                <span>Delivery</span>
+                <span>Free</span>
+              </div>
 
-            <div className="border-t mt-4 pt-4 flex justify-between font-semibold">
-              <span>Total</span>
-              <span>${subtotal.toFixed(2)}</span>
-            </div>
+              <div className="border-t mt-4 pt-4 flex justify-between font-semibold">
+                <span>Total</span>
+                <span>${subtotal.toFixed(2)}</span>
+              </div>
 
-            <button className="mt-6 w-full bg-orange-500 text-white py-3 rounded-full font-medium">
-              Place Order
-            </button>
-          </aside>
-              )}
+              <button className="mt-4 w-full bg-orange-500 text-white py-3 rounded-xl font-medium">
+                Place Order
+              </button>
+            </aside>
+          )}
         </div>
       </main>
     </div>
   );
 }
- 

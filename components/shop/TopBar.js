@@ -18,7 +18,7 @@ export default function TopBar({
         sticky top-0 z-10
         bg-white
         px-4 md:px-6
-        py-4 md:py-5
+        py-8 md:py-5
         mb-4 md:mb-5
       "
     >
